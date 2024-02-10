@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 
 public class Pcollection extends javax.swing.JFrame {
     private List<JTextField> Textos;
+    private int indice=0;
     
      //private List<JButton> Botones;
      //private int indice;
@@ -29,7 +30,7 @@ public class Pcollection extends javax.swing.JFrame {
         initComponents();
         //Botones= new ArrayList<>();
         Textos=new ArrayList<>();
-        //indice=0;
+        indice=0;
     }
 
     /**
@@ -44,12 +45,12 @@ public class Pcollection extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         BtAgregar = new javax.swing.JButton();
+        BttEliminar = new javax.swing.JButton();
+        BttImprimir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Pane = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         Pane1 = new javax.swing.JPanel();
-        BttImprimir = new javax.swing.JButton();
-        BttEliminar = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -80,16 +81,19 @@ public class Pcollection extends javax.swing.JFrame {
             }
         });
 
-        Pane.setForeground(new java.awt.Color(204, 255, 255));
-        Pane.setLayout(new java.awt.GridLayout(3, 0));
-
-        Pane1.setForeground(new java.awt.Color(204, 204, 255));
-        Pane1.setLayout(new java.awt.GridLayout(3, 0));
-        jScrollPane2.setViewportView(Pane1);
-
-        Pane.add(jScrollPane2);
-
-        jScrollPane1.setViewportView(Pane);
+        BttEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/eliminar48.png"))); // NOI18N
+        BttEliminar.setText("Eliminar");
+        BttEliminar.setBorderPainted(false);
+        BttEliminar.setContentAreaFilled(false);
+        BttEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BttEliminar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/eliminar64.png"))); // NOI18N
+        BttEliminar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/eliminar64.png"))); // NOI18N
+        BttEliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BttEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BttEliminarActionPerformed(evt);
+            }
+        });
 
         BttImprimir.setBackground(new java.awt.Color(242, 242, 242));
         BttImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/imprimir64.png"))); // NOI18N
@@ -106,20 +110,16 @@ public class Pcollection extends javax.swing.JFrame {
             }
         });
 
-        BttEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/eliminar48.png"))); // NOI18N
-        BttEliminar.setText("Eliminar");
-        BttEliminar.setBorderPainted(false);
-        BttEliminar.setContentAreaFilled(false);
-        BttEliminar.setDisabledIcon(null);
-        BttEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        BttEliminar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/eliminar64.png"))); // NOI18N
-        BttEliminar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/eliminar48.png"))); // NOI18N
-        BttEliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        BttEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BttEliminarActionPerformed(evt);
-            }
-        });
+        Pane.setForeground(new java.awt.Color(204, 255, 255));
+        Pane.setLayout(new java.awt.GridLayout(3, 0));
+
+        Pane1.setForeground(new java.awt.Color(204, 204, 255));
+        Pane1.setLayout(new java.awt.GridLayout(3, 0));
+        jScrollPane2.setViewportView(Pane1);
+
+        Pane.add(jScrollPane2);
+
+        jScrollPane1.setViewportView(Pane);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -129,28 +129,31 @@ public class Pcollection extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(11, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(BtAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                        .addComponent(BttImprimir)
-                        .addGap(28, 28, 28)
-                        .addComponent(BttEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32))))
+                        .addComponent(BtAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BttImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BttEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BttEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BttImprimir, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(BtAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BttEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BttImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(BtAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         pack();
@@ -158,10 +161,10 @@ public class Pcollection extends javax.swing.JFrame {
 
     private void BtAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtAgregarActionPerformed
         // TODO add your handling code here:
-        JTextField Texto =new JTextField();//"Texto"+indice para agregar nombre a los botones o t
+        JTextField Texto =new JTextField("Boton"+indice);//"Texto"+indice para agregar nombre a los botones o t
         Pane.add(Texto);
         Textos.add(Texto);
-        //indice++;
+        indice++;
         Pane.updateUI();
     }//GEN-LAST:event_BtAgregarActionPerformed
 
